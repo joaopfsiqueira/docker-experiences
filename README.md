@@ -2,10 +2,10 @@
 
 # Sumário 📚
 
-1 - **[Dockerfile](https://github.com/joaopfsiqueira/docker-experiences#exemplo-de-dockerfile)**\n
-2 - **[Docker](https://github.com/joaopfsiqueira/docker-experiences#docker)**
-3 - **[Comandos](https://github.com/joaopfsiqueira/docker-experiences#executando-comandos-ao-mesmo-tempo)**
-4 - **[Observações](https://github.com/joaopfsiqueira/docker-experiences#observa%C3%A7%C3%B5es)**
+1 - **[Dockerfile](https://github.com/joaopfsiqueira/docker-experiences#exemplo-de-dockerfile)**<br>
+2 - **[Docker](https://github.com/joaopfsiqueira/docker-experiences#docker)**<br>
+3 - **[Comandos](https://github.com/joaopfsiqueira/docker-experiences#executando-comandos-ao-mesmo-tempo)**<br>
+4 - **[Observações](https://github.com/joaopfsiqueira/docker-experiences#observa%C3%A7%C3%B5es)**<br>
 
 # Exemplo de Dockerfile
 
