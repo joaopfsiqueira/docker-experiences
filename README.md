@@ -7,7 +7,7 @@
 3 - **[Comandos](https://github.com/joaopfsiqueira/docker-experiences#executando-comandos-ao-mesmo-tempo)**<br>
 4 - **[Observações](https://github.com/joaopfsiqueira/docker-experiences#observa%C3%A7%C3%B5es)**<br>
 
-# Exemplo de Dockerfile
+# Dockerfile
 
 - Docker file com explicação: **[Dockerfile](https://github.com/joaopfsiqueira/linux/blob/docker/Dockerfile)**
 
@@ -28,7 +28,7 @@ docker run -p 8080:3000(portaOndeVaiRodarAplicação, express ou não) repositor
 
 - A instrução ARG carrega variáveis apenas no momento de build da imagem, enquanto a instrução ENV carrega variáveis que serão utilizadas no container.
 
-# Docker
+# Docker 🗃️
 
 - Comandos que serão usados em um docker
 
@@ -126,7 +126,7 @@ docker compose up -d
 
 - Usado para ver as árvores de processos, geralmente usado dentro de um container.
 
-# Executando comandos ao mesmo tempo.
+# Executando comandos ao mesmo tempo. 🧾
 
 - É possível utilizar um único comando que faça várias coisas, como por exemplo:
 
@@ -136,9 +136,9 @@ docker stop $(docker container ls -q)
 
 Esse comando vai parar os containeres e depois vai listar todos os containeres mas só o id de cada um. Por conta do comando -q (quiet)
 
-# Observações
+# Observações 👀
 
-## Images
+## Images 🏞️
 
 - Todas as imagens tem diversas camadas que formam uma única. E todas elas, quando baixamos, vem no modo RO, read only.
 
@@ -197,3 +197,46 @@ docker run -d -p 8080:80 dockersanples/static-site (aqui ele informa que a porta
 
 docker container ls -q (jeito de retornar as portas)
 ```
+
+# Docker Hub 🌎
+
+## Subindo Imagem para Hub
+
+1 - O primeiro passo é que você crie sua conta na parte direita da própria home do Docker Hub. Você define seu username, seu e-mail e sua senha, aceita os termos e marca o recaptcha. Depois é só clicar em “Sign Up” e confirmar sua conta por e-mail.
+
+2 - Depois que você dizer isso, no canto superior direito tem a parte de “Sign In”. Você vai colocar o seu usuário e também a senha que você usou no momento do cadastro.
+
+3 - Autenticar nossa conta no linux. _docker login -u nomeusuario_
+
+4 - Depois de apentar enter, vai pedir a senha que criou anteriormente referente ao username.
+
+5 - Rodar comando docker _images_ e pegar o _REPOSITORY_ da imagem que queremos subir e a _TAG_
+
+6 - Rodar o seguinte comando _docker push REPOSITORY:TAG_
+
+7 - Abrir https://hub.docker.com/repositories e achar seu repo!
+
+## Juntando imagens
+
+- Como dito anteriormente, imagens são feitas de camadas e o docker aproveita as camadas iguais! Sendo assim, se eu tivesse um _projeto x_ que tivesse 4 camadas e um _projeto y_ que tem as mesmas 4 camadas e mais 2 camadas novas, como eu faria para pegar essas duas camadas novas do _projeto y_ e juntar ao _projeto x_?
+
+```
+docker tag repositorioProjetoY:tagProjetoY repositorioProjetoX:tagProjetoX
+docker push repositorioProjetoX:tagProjetoX
+```
+
+- Nisso, será possível ver pelo terminal que o docker vai informar que 4 camadas já são iguais e que vai apenas subir mais 2 novas!
+
+## Possíveis erro
+
+### Acess denied ao subir hub
+
+- Se você se deparou com essa mensagem de erro logo na primeira vez que foi subir ou hub ou em algum outro momento, tente isso:
+
+1 - docker tag _repositoryQueDaErro:tagQueDaErro_ _seuUserNameNoHub/NomeProjeto:tagNova_
+
+2 - _docker images_ para ver se a nova imagem já está ali.
+
+3 - docker push _novoRepository:novaTag_
+
+- _Exemplo de comando docker tag joaopfsiq/app-node:1.0 joaopfsiqueira/projeto-x:1.0_
