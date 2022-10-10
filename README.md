@@ -6,8 +6,8 @@
 2 - **[Docker](https://github.com/joaopfsiqueira/docker-experiences#docker)**<br>
 3 - **[Comandos](https://github.com/joaopfsiqueira/docker-experiences#executando-comandos-ao-mesmo-tempo)**<br>
 4 - **[Observações](https://github.com/joaopfsiqueira/docker-experiences#observa%C3%A7%C3%B5es)**<br>
-4 - **[Docker Hub](https://github.com/joaopfsiqueira/docker-experiences#observa%C3%A7%C3%B5es)**<br>
-4 - **[Docker Hub](https://github.com/joaopfsiqueira/docker-experiences#observa%C3%A7%C3%B5es)**<br>
+5 - **[Docker Hub](https://github.com/joaopfsiqueira/docker-experiences#docker-hub-)**<br>
+6 - **[Possíveis erros](https://github.com/joaopfsiqueira/docker-experiences#poss%C3%ADveis-erros-)**<br>
 
 # Dockerfile
 
@@ -229,7 +229,7 @@ docker push repositorioProjetoX:tagProjetoX
 
 - Nisso, será possível ver pelo terminal que o docker vai informar que 4 camadas já são iguais e que vai apenas subir mais 2 novas!
 
-# Possíveis erro
+# Possíveis erros ❌
 
 ## Acess denied ao subir hub
 
