@@ -50,6 +50,14 @@ docker run hello-world sleep 1d(o comando sleep é um comando que diz que o proc
 docker run -it hello-world bash (roda o docker e já abre o terminal interativo.)
 ```
 
+### --name
+
+- Comando utilizado para quando baixarmos um container ou imagem, podemos colocar o nome que quisermos!
+
+```
+docker run -it --name ubuntu1 ubuntu bash
+```
+
 ### docker ps
 
 - Vai mostrar os containeres em executação ou não
@@ -374,9 +382,47 @@ Com isso, podemos ver que os containeres que checamos acima, ao realizar um insp
 4 - ping IPAddressContainer (valor retornado do docker inspect)
 ```
 
-- Porém, o ping é algo instável! Dito isso, vamos criar nossa própria rede bridge!
+- Porém, o ping é algo instável, já que eles podem se alterar em uma posível reinicialização! Dito isso, vamos criar nossa própria rede bridge!
 
 ## Criando Rede Bridge
+
+- Ao invés de utilizarmos o ip, podemos utilizar o hostname para fazer essa rede! Vamos ao passo a passo!
+
+1 - Criar uma nova rede que fará o papel da rede bridge!
+
+```
+docker network create --driver bridge *nomeRede*
+```
+
+2 - Quando rodarmos o container, selecionar a rede que ele vai rodar!
+
+```
+docker run -it --name ubuntu1 --network *nomeRede* ubuntu bash
+docker ps (pegar idContainer)
+docker inspect idcontainer
+```
+
+Feito isso, podemos analisar que dentro desse container, ao invés de _bridge_ em _Networks_, vemos _nomeRede_
+
+3 - Colocar quantos containeres nessa rede! _SE ATENTAR AO NOME DE CONTAINER DIFERENTE_
+
+```
+docker run -it --name ubuntu2 --network *nomeRede* ubuntu bash sleep 1d
+docker run -it --name ubuntu3 --network *nomeRede* ubuntu bash sleep 1d
+```
+
+Colocamos em sleep 1d para não nos preocuparmos com a execução do mesmo no terminal!
+
+4 - Voltamos ao primeiro terminal do primeiro container ubuntu1 e comunicar _ubuntu1_ com o _ubuntu2_ e _ubuntu3_!
+
+```
+apt-get update
+apt-get install iputils-ping -y
+ping ubuntu2
+ping ubuntu3
+```
+
+Com isso, podemos ver que o ping será realizado normalmente!
 
 # Docker Hub 🌎
 
