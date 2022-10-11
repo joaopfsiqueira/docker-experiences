@@ -10,7 +10,7 @@
 6 - **[Rede bridge](https://github.com/joaopfsiqueira/docker-experiences#rede-bridge-)**<br>
 7 - **[Docker Hub](https://github.com/joaopfsiqueira/docker-experiences#docker-hub-)**<br>
 8 - **[Possíveis erros](https://github.com/joaopfsiqueira/docker-experiences#poss%C3%ADveis-erros-)**<br>
-9 - **[Docker Compose]()**
+9 - **[Docker Compose](https://github.com/joaopfsiqueira/docker-experiences#docker-compose)**
 
 # Dockerfile
 
@@ -531,3 +531,11 @@ docker push repositorioProjetoX:tagProjetoX
 1 - sudo apt-get update
 2 - sudo apt-get install docker-compose-plugin
 3 - docker compose version (Deve retornar a versão.)
+
+# Utilização 🛠️
+
+- Feito a instalação, vamos para a utilização!
+
+1 - Criar arquivo docker-compose.yml, segue um **[exemplo](https://github.com/joaopfsiqueira/docker-experiences#docker-compose)**
+2 - Ir no diretório onde se encontra o docker-compose.yml, e rodar _docker compose up_
+3 - Para visualizar basta abrir o docker desktop (caso esteja utilizando) ou através do navegador, digitando localhost:4000 (porta de exemplo do docker-compose.yml)

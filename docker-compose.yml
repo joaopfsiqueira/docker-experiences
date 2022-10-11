@@ -1,0 +1,21 @@
+version: '3.9' ## versão do yml que vamos utilizar
+services: # serviços consumidos, as imagens.
+  mongodb: # nome serviço
+    image: mongo:4.4.6 # versão da imagem do serviço
+    container_name: meu-mongo # nome do container criado
+    networks: # rede do docker em que o container será rodado! Pode passar uma rede criada para ter comunicação entre hostname.
+      - compose-bridge
+
+  #aplicação utilizada no curso da alura como exemplo https://cursos.alura.com.br/course/docker-criando-gerenciando-containers
+  alurabooks:
+    image: aluradocker/alura-books:1.0
+    container_name: alurabooks
+    networks:
+      - compose-bridge
+    ports: # liberando a porta 4000 do meu sistema e falando que vai consumir o container da porta 3000.
+      - 4000:3000
+
+# criando nossa rede interna que será utilizada pelos containeres.
+networks:
+  compose-bridge: # nome
+    driver: bridge # tipo de driver, de uma olhada no readme desse repositório, lá tem explicação!
