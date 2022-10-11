@@ -6,8 +6,9 @@
 2 - **[Docker](https://github.com/joaopfsiqueira/docker-experiences#docker)**<br>
 3 - **[Comandos](https://github.com/joaopfsiqueira/docker-experiences#executando-comandos-ao-mesmo-tempo)**<br>
 4 - **[Observações](https://github.com/joaopfsiqueira/docker-experiences#observa%C3%A7%C3%B5es)**<br>
-5 - **[Docker Hub](https://github.com/joaopfsiqueira/docker-experiences#docker-hub-)**<br>
-6 - **[Possíveis erros](https://github.com/joaopfsiqueira/docker-experiences#poss%C3%ADveis-erros-)**<br>
+5 - **[Persistindo dados](https://github.com/joaopfsiqueira/docker-experiences#observa%C3%A7%C3%B5es)**<br>
+6 - **[Docker Hub](https://github.com/joaopfsiqueira/docker-experiences#docker-hub-)**<br>
+7 - **[Possíveis erros](https://github.com/joaopfsiqueira/docker-experiences#poss%C3%ADveis-erros-)**<br>
 
 # Dockerfile
 
@@ -210,6 +211,15 @@ docker run -d -p 8080:80 dockersanples/static-site (aqui ele informa que a porta
 
 docker container ls -q (jeito de retornar as portas)
 ```
+
+# Persistindo dados 🎲
+
+- Podemos querer que os dados da nossa aplicação sejam persistentes, porque assim garantimos que ela esteja distribuída e disponível se precisarmos consultá-la. Porém, se escrevermos os dados nos containers, por padrão eles não ficarão armazenados nesta camada, criada para ser descartável.
+
+Formas de lidar com isso:
+
+1 - _Volumes_. Com volumes, é possível escrever os dados em uma camada persistente.
+2 - _Bind mounts_. Com bind mounts, é possível escrever os dados em uma camada persistente baseado na estrutura de pastas do host.
 
 # Docker Hub 🌎
 
