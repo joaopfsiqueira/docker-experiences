@@ -10,6 +10,7 @@
 6 - **[Rede bridge](https://github.com/joaopfsiqueira/docker-experiences#rede-bridge-)**<br>
 7 - **[Docker Hub](https://github.com/joaopfsiqueira/docker-experiences#docker-hub-)**<br>
 8 - **[Possíveis erros](https://github.com/joaopfsiqueira/docker-experiences#poss%C3%ADveis-erros-)**<br>
+9 - **[Docker Compose]()**
 
 # Dockerfile
 
@@ -447,6 +448,19 @@ docker run -d --network host joaopfsiqueira/app-node:1.0
 
 Como esse container roda uma aplicação que a porta é 3000, basta ir no navegador e utilizar _localhost:3000_
 
+### Tutorial Prático Aplicação e Banco
+
+Inicialmente, abra o terminal e execute o comando docker network ls. Caso ainda não tenha criado a rede minha-bridge, execute o comando docker network create –driver bridge minha-bridge.
+
+Em seguida, iremos executar o container responsável pelo banco de dados. Para isso, execute o comando docker run -d –network minha-bridge –name meu-mongo mongo:4.4.6. Repare que estamos usando a versão 4.4.6.
+
+Precisamos agora executar o container responsável pela aplicação que irá se comunicar com o banco de dados. Para isso, execute o comando docker run -d –network minha-bridge –name alurabooks -p 3000:3000 aluradocker/alura-books:1.0. Repare que utilizamos a flag -p para em seguida validar o funcionamento da aplicação através de nosso host.
+
+Em seu navegador, acesse a url localhost:3000 e veja que foi possível carregar a página da aplicação. Para que os dados sejam carregados e armazenados no banco, acesse localhost:3000/seed e, em seguida, recarregue a página localhost:3000. Veja que as informações agora estão sendo exibidas por conta da comunicação entre aplicação e banco de dados.
+<br>
+<br>
+<br>
+
 # Docker Hub 🌎
 
 ## Subindo Imagem para Hub
@@ -489,3 +503,31 @@ docker push repositorioProjetoX:tagProjetoX
 3 - docker push _novoRepository:novaTag_
 
 - _Exemplo de comando docker tag joaopfsiq/app-node:1.0 joaopfsiqueira/projeto-x:1.0_
+
+# Docker Compose
+
+- Docker compose é uma solução desenvolvida para agilizar e facilitar tudo visto anteriormente, através de interface e comandos simples. Vamos conhecer mais!
+
+- O Docker Compose nada mais é do que uma ferramenta de coordenação de containers. Não confunda com orquestração, são coisas diferentes.
+
+- Então o Docker Compose vai nos auxiliar a executar, a compor, como o nome diz, diversos containers em um mesmo ambiente, através de um único arquivo. Então vamos conseguir compor uma aplicação maior através dos nossos containers com o Docker Compose.
+
+- E faremos isso através da definição de um arquivo yml, aquela extensão yml, ou yaml, caso você já tenha ouvido falar. E nada mais é do que um tipo de estrutura que vamos seguir baseado em indentação do nosso arquivo.
+
+## Instalação 🔧
+
+### Windows
+
+- Para instalar no windows, basta seguir a seguir a seguinte documentação: https://docs.docker.com/desktop/install/windows-install/ utilizando Docker Desktop.
+
+### WSL
+
+- https://docs.docker.com/desktop/windows/wsl/
+
+### Linux
+
+- Para Linux ou WSL é possível realizar a instalação por pacote no terminal.
+
+1 - sudo apt-get update
+2 - sudo apt-get install docker-compose-plugin
+3 - docker compose version (Deve retornar a versão.)
