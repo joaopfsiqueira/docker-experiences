@@ -262,6 +262,69 @@ cd app/
 ls
 ```
 
+## Volumes
+
+- Volumes é uma outra forma de persistir dados e também a mais recomendada. Se olharmos a imagem que está presente na documentação (https://docs.docker.com/storage/volumes/), ele mostra que a utilização de volumes é uma área gerenciada pelo Docker dentro do seu file system.
+
+Então por mais que no fim das contas as nossas informações continuem dentro do nosso host original para ser persistidas, nós teremos uma área que o Docker vai gerenciar e é muito mais segura a nível de alguém mexer e fazer alguma loucura ali dentro, porque será gerenciada pelo próprio Docker.
+
+E como criamos um volume inicialmente? Vamos voltar no nosso terminal.
+
+### docker volume
+
+- Usado para ver todos os volumes criados no docker.
+
+```
+docker volume ls
+```
+
+- Criando volume
+
+```
+docker volume create joaopfsiqueira-volume
+```
+
+Feito isso, vamos fazer o mesmo passo do bind mounts! Só que agora, ao invés de especificar o diretório na minha máquina que eu quero que seja copiado do "app" ou qualquer outro lugar do container, eu vou especificar o volume!
+
+```
+docker run -it -v joaopfsiqueira-volume:/app ubuntu bash
+
+OU
+
+docker run -it --mount source=joaopfsiqueira-volume,target=/app ubuntu bash
+```
+
+- O mais mágico é, se os comandos acima não encontrarem o volume especificado ele vai simplesmente criar!
+  <br>
+  <br>
+
+_Criamos arquivo para teste_!
+
+```
+cd app/
+touch arquivo-qualquer.txt
+```
+
+_Criamos um novo container para ver se foi persistido!_
+
+```
+docker run -it -v meu-volume:/app ubuntu bash
+cd app/
+ls
+arquivo vai estar lá!
+```
+
+- Acessando volumes com os arquivos!
+
+```
+sudo su
+cd /var/lib/docker (tudo o que tem dentro do docker, image, containers e VOLUMES!)
+cd volumes/
+ls (vai achar _data dentro do volume!)
+cd _data/
+ls (Vai achar os arquivos criados anteriormentes que foram salvos no volume e persistidos de outras imagens!)
+```
+
 # Docker Hub 🌎
 
 ## Subindo Imagem para Hub
