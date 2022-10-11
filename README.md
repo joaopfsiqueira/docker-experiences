@@ -7,7 +7,7 @@
 3 - **[Comandos](https://github.com/joaopfsiqueira/docker-experiences#executando-comandos-ao-mesmo-tempo)**<br>
 4 - **[Observações](https://github.com/joaopfsiqueira/docker-experiences#observa%C3%A7%C3%B5es)**<br>
 5 - **[Persistindo dados](https://github.com/joaopfsiqueira/docker-experiences#persistindo-dados-)**<br>
-6 - **[Rede bridge](https://github.com/joaopfsiqueira/)**<br>
+6 - **[Rede bridge](https://github.com/joaopfsiqueira/docker-experiences#rede-bridge-)**<br>
 7 - **[Docker Hub](https://github.com/joaopfsiqueira/docker-experiences#docker-hub-)**<br>
 8 - **[Possíveis erros](https://github.com/joaopfsiqueira/docker-experiences#poss%C3%ADveis-erros-)**<br>
 
@@ -35,6 +35,15 @@ docker run -p 8080:3000(portaOndeVaiRodarAplicação, express ou não) repositor
 # Docker 🗃️
 
 - Comandos que serão usados em um docker
+
+### docker pull
+
+- Comando utilizado para baixar a imagem do docker hub e manter no nosso docker.
+
+```
+docker pull mongo:latest
+docker pull mongo:4.4.6
+```
 
 ### docker run
 
@@ -426,11 +435,11 @@ Com isso, podemos ver que o ping será realizado normalmente!
 
 ## Rede none
 
-- Rede utilizada quando não queremos que a aplicação tenha acesso a rede. Fazendo com que o container não tenha ip ou algo do tipo.
+- Rede utilizada quando não queremos que a aplicação tenha acesso a rede. Fazendo com que o container não tenha ip ou algo do tipo. Removendo a interface de rede.
 
 ## Rede host
 
-- Rede utilizada para colocar aplicações em localhost. Removendo quaisquer restrições de isolamento ou porta.
+- Rede utilizada para colocar aplicações em localhost. Removendo quaisquer restrições de isolamento ou porta que envolvem container e o sistema.
 
 ```
 docker run -d --network host joaopfsiqueira/app-node:1.0
