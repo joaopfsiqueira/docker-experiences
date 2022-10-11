@@ -386,29 +386,29 @@ Com isso, podemos ver que os containeres que checamos acima, ao realizar um insp
 
 ## Criando Rede Bridge
 
-- Ao invés de utilizarmos o ip, podemos utilizar o hostname para fazer essa rede! Vamos ao passo a passo!
+- Ao invés de utilizarmos o ip, podemos utilizar o hostname para fazer essa rede, para isso, vamos precisar criar nossa própria rede, já que apenas redes criadas pelo usuário podem utilizar do hostname! Vamos ao passo a passo!
 
 1 - Criar uma nova rede que fará o papel da rede bridge!
 
 ```
-docker network create --driver bridge *nomeRede*
+docker network create --driver bridge *nomeRedeNova*
 ```
 
 2 - Quando rodarmos o container, selecionar a rede que ele vai rodar!
 
 ```
-docker run -it --name ubuntu1 --network *nomeRede* ubuntu bash
+docker run -it --name ubuntu1 --network *nomeRedeNova* ubuntu bash
 docker ps (pegar idContainer)
 docker inspect idcontainer
 ```
 
-Feito isso, podemos analisar que dentro desse container, ao invés de _bridge_ em _Networks_, vemos _nomeRede_
+Feito isso, podemos analisar que dentro desse container, ao invés de _bridge_ em _Networks_, vemos _nomeRedeNova_
 
 3 - Colocar quantos containeres nessa rede! _SE ATENTAR AO NOME DE CONTAINER DIFERENTE_
 
 ```
-docker run -it --name ubuntu2 --network *nomeRede* ubuntu bash sleep 1d
-docker run -it --name ubuntu3 --network *nomeRede* ubuntu bash sleep 1d
+docker run -it --name ubuntu2 --network *nomeRedeNova* ubuntu bash sleep 1d
+docker run -it --name ubuntu3 --network *nomeRedeNova* ubuntu bash sleep 1d
 ```
 
 Colocamos em sleep 1d para não nos preocuparmos com a execução do mesmo no terminal!
@@ -423,6 +423,20 @@ ping ubuntu3
 ```
 
 Com isso, podemos ver que o ping será realizado normalmente!
+
+## Rede none
+
+- Rede utilizada quando não queremos que a aplicação tenha acesso a rede. Fazendo com que o container não tenha ip ou algo do tipo.
+
+## Rede host
+
+- Rede utilizada para colocar aplicações em localhost. Removendo quaisquer restrições de isolamento ou porta.
+
+```
+docker run -d --network host joaopfsiqueira/app-node:1.0
+```
+
+Como esse container roda uma aplicação que a porta é 3000, basta ir no navegador e utilizar _localhost:3000_
 
 # Docker Hub 🌎
 
