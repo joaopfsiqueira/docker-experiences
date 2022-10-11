@@ -113,6 +113,7 @@ docker exec -it idcontainer bash (vai rodar o container em modo bash, no termina
 ```
 docker rm idcontainer
 docker rm idcontainer --force (vai forçar a exclusão caso esteja rodando)
+docker rmi (removendo imagens)
 ```
 
 ### -d
@@ -122,6 +123,14 @@ docker rm idcontainer --force (vai forçar a exclusão caso esteja rodando)
 ```
 docker run -d hello-world
 docker compose up -d
+```
+
+### -s
+
+- -s é uma tag que retorna uma nova coluna no ps ou ls, coluna que se chama size, retornando o tamanho da imagem.
+
+```
+docker ps -s
 ```
 
 ### top
@@ -134,6 +143,8 @@ docker compose up -d
 
 ```
 docker stop $(docker container ls -q)
+docker container rm $(docker container ls -aq)
+docker rmi $(docker image ls -aq) --force
 ```
 
 Esse comando vai parar os containeres e depois vai listar todos os containeres mas só o id de cada um. Por conta do comando -q (quiet)
