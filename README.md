@@ -7,8 +7,9 @@
 3 - **[Comandos](https://github.com/joaopfsiqueira/docker-experiences#executando-comandos-ao-mesmo-tempo)**<br>
 4 - **[Observações](https://github.com/joaopfsiqueira/docker-experiences#observa%C3%A7%C3%B5es)**<br>
 5 - **[Persistindo dados](https://github.com/joaopfsiqueira/docker-experiences#persistindo-dados-)**<br>
-6 - **[Docker Hub](https://github.com/joaopfsiqueira/docker-experiences#docker-hub-)**<br>
-7 - **[Possíveis erros](https://github.com/joaopfsiqueira/docker-experiences#poss%C3%ADveis-erros-)**<br>
+6 - **[Rede bridge](https://github.com/joaopfsiqueira/)**<br>
+7 - **[Docker Hub](https://github.com/joaopfsiqueira/docker-experiences#docker-hub-)**<br>
+8 - **[Possíveis erros](https://github.com/joaopfsiqueira/docker-experiences#poss%C3%ADveis-erros-)**<br>
 
 # Dockerfile
 
@@ -115,6 +116,15 @@ docker exec -it idcontainer bash (vai rodar o container em modo bash, no termina
 docker rm idcontainer
 docker rm idcontainer --force (vai forçar a exclusão caso esteja rodando)
 docker rmi (removendo imagens)
+```
+
+### docker inspect
+
+- Serve para inspecionar um container, o comando retorno diversos dados sobre o mesmo! Como network, bridge, ips...
+
+```
+docker ps (pegar o idContainer)
+docker inspect idcontainer
 ```
 
 ### -d
@@ -238,7 +248,7 @@ Para _testar_:
 
 ```
 ls
-cd app/
+cd app/[](https://cursos.alura.com.br/course/docker-criando-gerenciando-containers/task/100402)
 ls
 touch arquivo-qualquer.txt
 basta olhar na pasta que você criou que esses arquivo criado dentro de app vai estar lá tbm!
@@ -284,7 +294,7 @@ docker volume ls
 docker volume create joaopfsiqueira-volume
 ```
 
-Feito isso, vamos fazer o mesmo passo do bind mounts! Só que agora, ao invés de especificar o diretório na minha máquina que eu quero que seja copiado do "app" ou qualquer outro lugar do container, eu vou especificar o volume!
+Feito isso, vamos fazer o mesmo passo do bind mounts! Só que agora, ao invés de especificar o diretório na minha máquina que eu quero que seja copiado do "app" ou qualquer outro lugar do container, eu vou especificar o volume! Uma das vantagens é que o docker é quem gerencia os volumes, sem necessitar de uma estrutura de pastas como em bind mounts!
 
 ```
 docker run -it -v joaopfsiqueira-volume:/app ubuntu bash
@@ -324,6 +334,49 @@ ls (vai achar _data dentro do volume!)
 cd _data/
 ls (Vai achar os arquivos criados anteriormentes que foram salvos no volume e persistidos de outras imagens!)
 ```
+
+# Rede Bridge 🌉
+
+- Quando criamos um container ou vários, podemos rodar o comando _docker inspect idContainer_ e ter acesso à diversas informações do container, uma delas é o Network! E dentro desse conjunto de redes ele tem uma chamada _bridge_ que tem diversas configurações
+
+- Mas em que momento nós configuramos essa rede? A questão é que nós não configuramos. Quem fez isso foi o próprio Docker. É algo automático, tudo é criado em uma única rede. Isso é possível de comparar executando 2 containeres ao mesmo tempo:
+
+1 - docker run –it ubuntu bash
+2 - abre outro terminal
+3 - docker ps idContainer1
+4 - abre outro terminal
+5 - docker run –it ubuntu bash
+6 - abre outro terminal
+7 - docker ps idContainer2
+
+- Feito isso, é só comparar! Repara que se colocarmos lado a lado, toda essa parte de rede que ele está mostrando é igual. A parte de IPAMconfig como null, o network ID é igual. Então todos esses pontos dentro do nosso sistema, exceto o endpoint ID e o IP address, são iguais. Por quê? Isso significa então que esses containers no fim das contas estão na _mesma rede_.
+  <br>
+  <br>
+
+- Mas será que conseguimos fazer algum tipo de comunicação entre eles, já que eles estão na mesma rede, que é um driver que o Docker está colocando para nós? Antes de pensar nisso, precisamos entender o que é a _bridge_
+
+### docker network
+
+- Comando utilizado para visualizar todas as networks do docker. É padrão ter bridge, host e none!
+
+```
+docker network ls
+```
+
+Com isso, podemos ver que os containeres que checamos acima, ao realizar um inspect neles, notamos que o _networkId_ tem a inicial do id de uma dessas networks!
+
+- Dito isso, então podemos nos comunicar por ping dentro de um container para o outro? Sim! Como ficaria?
+
+```
+1 - docker run -it ubuntu(ou qualquer outra imagem) bash
+2 - apt-get update (caso de um erro de ping not found)
+3 - apt-get install iputils-ping -y (caso de um erro de ping not found)
+4 - ping IPAddressContainer (valor retornado do docker inspect)
+```
+
+- Porém, o ping é algo instável! Dito isso, vamos criar nossa própria rede bridge!
+
+## Criando Rede Bridge
 
 # Docker Hub 🌎
 
