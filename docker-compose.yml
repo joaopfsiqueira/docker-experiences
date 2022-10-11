@@ -14,6 +14,8 @@ services: # serviços consumidos, as imagens.
       - compose-bridge
     ports: # liberando a porta 4000 do meu sistema e falando que vai consumir o container da porta 3000.
       - 4000:3000
+    depends_on: # só configura o serviço se o outro já estiver configurado!
+      - mongodb # nome do outro serviço
 
 # criando nossa rede interna que será utilizada pelos containeres.
 networks:

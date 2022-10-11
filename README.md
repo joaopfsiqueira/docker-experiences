@@ -70,7 +70,7 @@ docker run -it --name ubuntu1 ubuntu bash
 
 ### docker ps
 
-- Vai mostrar os containeres em executação ou não
+- Vai mostrar os containers! em executação ou não
 
 ```
 docker ps
@@ -79,7 +79,7 @@ docker container ps -a
 
 ### docker ls
 
-- Vai mostrar os containeres em executação ou não, igual ao ps só que mais verboso.
+- Vai mostrar os containers! em executação ou não, igual ao ps só que mais verboso.
 
 ```
 docker ls
@@ -176,7 +176,7 @@ docker container rm $(docker container ls -aq)
 docker rmi $(docker image ls -aq) --force
 ```
 
-Esse comando vai parar os containeres e depois vai listar todos os containeres mas só o id de cada um. Por conta do comando -q (quiet)
+Esse comando vai parar os containers! e depois vai listar todos os containers! mas só o id de cada um. Por conta do comando -q (quiet)
 
 # Observações 👀
 
@@ -272,7 +272,7 @@ touch arquivo-qualquer.txt
 basta olhar na pasta que você criou que esses arquivo criado dentro de app vai estar lá tbm!
 ```
 
-Dito isso, é possível até mesmo excluir o container e rodar o comando docker run acima que tudo o que estiver dentro da sua pasta criada também vai para app! É o jeito perfeito para transacionar dados entre containeres.
+Dito isso, é possível até mesmo excluir o container e rodar o comando docker run acima que tudo o que estiver dentro da sua pasta criada também vai para app! É o jeito perfeito para transacionar dados entre containers!.
 Mantendo tudo o que estiver dentro da camada de R/W em outras imagens, já que a camada de R/W é excluida junto da imagem.
 
 - Porém, ultimamente vem sendo recomendado fazer os mesmos passos acima com um outro comando, o --mount.
@@ -357,7 +357,7 @@ ls (Vai achar os arquivos criados anteriormentes que foram salvos no volume e pe
 
 - Quando criamos um container ou vários, podemos rodar o comando _docker inspect idContainer_ e ter acesso à diversas informações do container, uma delas é o Network! E dentro desse conjunto de redes ele tem uma chamada _bridge_ que tem diversas configurações
 
-- Mas em que momento nós configuramos essa rede? A questão é que nós não configuramos. Quem fez isso foi o próprio Docker. É algo automático, tudo é criado em uma única rede. Isso é possível de comparar executando 2 containeres ao mesmo tempo:
+- Mas em que momento nós configuramos essa rede? A questão é que nós não configuramos. Quem fez isso foi o próprio Docker. É algo automático, tudo é criado em uma única rede. Isso é possível de comparar executando 2 containers! ao mesmo tempo:
 
 1 - docker run –it ubuntu bash
 2 - abre outro terminal
@@ -381,7 +381,7 @@ ls (Vai achar os arquivos criados anteriormentes que foram salvos no volume e pe
 docker network ls
 ```
 
-Com isso, podemos ver que os containeres que checamos acima, ao realizar um inspect neles, notamos que o _networkId_ tem a inicial do id de uma dessas networks!
+Com isso, podemos ver que os containers! que checamos acima, ao realizar um inspect neles, notamos que o _networkId_ tem a inicial do id de uma dessas networks!
 
 - Dito isso, então podemos nos comunicar por ping dentro de um container para o outro? Sim! Como ficaria?
 
@@ -414,7 +414,7 @@ docker inspect idcontainer
 
 Feito isso, podemos analisar que dentro desse container, ao invés de _bridge_ em _Networks_, vemos _nomeRedeNova_
 
-3 - Colocar quantos containeres nessa rede! _SE ATENTAR AO NOME DE CONTAINER DIFERENTE_
+3 - Colocar quantos containers! nessa rede! _SE ATENTAR AO NOME DE CONTAINER DIFERENTE_
 
 ```
 docker run -it --name ubuntu2 --network *nomeRedeNova* ubuntu bash sleep 1d
@@ -536,6 +536,28 @@ docker push repositorioProjetoX:tagProjetoX
 
 - Feito a instalação, vamos para a utilização!
 
-1 - Criar arquivo docker-compose.yml, segue um **[exemplo](https://github.com/joaopfsiqueira/docker-experiences#docker-compose)**
+1 - Criar arquivo docker-compose.yml, segue um **[exemplo](https://github.com/joaopfsiqueira/docker-experiences/blob/master/docker-compose.yml)**
 2 - Ir no diretório onde se encontra o docker-compose.yml, e rodar _docker compose up_
 3 - Para visualizar basta abrir o docker desktop (caso esteja utilizando) ou através do navegador, digitando localhost:4000 (porta de exemplo do docker-compose.yml)
+
+## docker compose down
+
+- Para removermos os containers e parar os serviços, usamos o comando _docker compose down_!
+
+```
+docker compose down
+```
+
+## docker compose ps
+
+- Listando os containers!
+
+```
+docker compose ps
+```
+
+### Criando Make file
+
+- Uma forma de deixar os comandos do docker compose ainda mais simples é através da criação de um _Makefile_! Esse Makefile cria comandos simples que executam outros comandos. No exemplo abaixo, eu crio a section "up" que é rodada através de _make up_ no terminal e a section "down" rodada através do _make down_ também no terminal! Ambos vão rodar os comandos que estão abaixo da section.
+
+**[Exemplo](https://github.com/joaopfsiqueira/docker-experiences/blob/master/docker-compose.yml)**
