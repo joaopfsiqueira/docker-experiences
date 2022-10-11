@@ -221,6 +221,47 @@ Formas de lidar com isso:
 1 - _Volumes_. Com volumes, é possível escrever os dados em uma camada persistente.
 2 - _Bind mounts_. Com bind mounts, é possível escrever os dados em uma camada persistente baseado na estrutura de pastas do host.
 
+## Bind Mounts
+
+- Ele vai fazer basicamente o bind, uma ligação entre um ponto de montagem do nosso sistema operacional e algum diretório dentro do container. Vamos entender agora como isso vai funcionar.
+
+1 - Primeiro eu crio uma pasta chamada volume-docker(pode ser qualquer nome), que é a pasta que vai armazenar a persistência de dados.
+
+2 - Rodar seguinte comando:
+
+```
+docker run –it –v /home/joaopfsiqueira/volume-docker:/app Ubuntu bash
+```
+
+Esse comando vai persistir os dados que está dentro de /app na imagem ubuntu e já vai abrir o bash.
+Para _testar_:
+
+```
+ls
+cd app/
+ls
+touch arquivo-qualquer.txt
+basta olhar na pasta que você criou que esses arquivo criado dentro de app vai estar lá tbm!
+```
+
+Dito isso, é possível até mesmo excluir o container e rodar o comando docker run acima que tudo o que estiver dentro da sua pasta criada também vai para app! É o jeito perfeito para transacionar dados entre containeres.
+Mantendo tudo o que estiver dentro da camada de R/W em outras imagens, já que a camada de R/W é excluida junto da imagem.
+
+- Porém, ultimamente vem sendo recomendado fazer os mesmos passos acima com um outro comando, o --mount.
+  Como ficaria?
+
+```
+docker run it --mount type=bind,source="/home/joaopfsiqueira/volume-docker,target=/app ubuntu bash
+```
+
+Bem mais descritivo!`
+Para ver se o arquivo que está dentro de volume-docker inserido anteriormente vai estar dentro do novo container basta fazer o seguinte comando dentro do bash do container:
+
+```
+cd app/
+ls
+```
+
 # Docker Hub 🌎
 
 ## Subindo Imagem para Hub
