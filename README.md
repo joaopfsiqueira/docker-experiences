@@ -575,5 +575,5 @@ docker compose ps
 
 # Instalação Docker Ubuntu
 
-**[Ubuntu 22.04](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-22-04)**
+**[Ubuntu 22.04](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-22-04)**<br>
 **[Docker Engine](https://docs.docker.com/engine/install/ubuntu/)**
