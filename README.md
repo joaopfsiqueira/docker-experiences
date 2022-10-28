@@ -5,13 +5,13 @@
 1 - **[Dockerfile](https://github.com/joaopfsiqueira/docker-experiences#exemplo-de-dockerfile)**<br>
 2 - **[Docker](https://github.com/joaopfsiqueira/docker-experiences#docker)**<br>
 3 - **[Comandos](https://github.com/joaopfsiqueira/docker-experiences#executando-comandos-ao-mesmo-tempo)**<br>
-4 - **[Observações](https://github.com/joaopfsiqueira/docker-experiences#observa%C3%A7%C3%B5es)**<br>
+4 - **[Observações](https://github.com/joaopfsiqueira/docker-experiences#observa%C3%A7%C3%B5es-)**<br>
 5 - **[Persistindo dados](https://github.com/joaopfsiqueira/docker-experiences#persistindo-dados-)**<br>
 6 - **[Rede bridge](https://github.com/joaopfsiqueira/docker-experiences#rede-bridge-)**<br>
 7 - **[Docker Hub](https://github.com/joaopfsiqueira/docker-experiences#docker-hub-)**<br>
 8 - **[Possíveis erros](https://github.com/joaopfsiqueira/docker-experiences#poss%C3%ADveis-erros-)**<br>
-9 - **[Docker Compose](https://github.com/joaopfsiqueira/docker-experiences#docker-compose)**
-10 - **[Instalação Docker Ubuntu]()**
+9 - **[Docker Compose](https://github.com/joaopfsiqueira/docker-experiences#docker-compose)**<br>
+10 - **[Instalação Docker Ubuntu](https://github.com/joaopfsiqueira/docker-experiences#instala%C3%A7%C3%A3o-docker-ubuntu)**
 
 # Dockerfile
 
