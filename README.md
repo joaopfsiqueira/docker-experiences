@@ -195,6 +195,14 @@ Esse comando vai parar os containers! e depois vai listar todos os containers! m
 docker images
 ```
 
+### docker search
+
+- Usado para pesquisar informações sobre imagens que estão no Docker Hub
+```
+docker search ubuntu
+docker search hello-world
+```
+
 ### docker inspect
 
 - Usado para inspecionar uma imagem
