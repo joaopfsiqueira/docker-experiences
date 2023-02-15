@@ -93,6 +93,7 @@ docker container ls -a (mostra todos os containers em execução ou não)
 
 ```
 docker stop idcontainer (esse id é achado no comando ps ou ls)
+docker stop $(docker ps -a -q) // vai parar TODOS.
 ```
 
 ### docker pause
@@ -134,7 +135,8 @@ docker exec -it idcontainer bash (vai rodar o container em modo bash, no termina
 ```
 docker rm idcontainer
 docker rm idcontainer --force (vai forçar a exclusão caso esteja rodando)
-docker rmi (removendo imagens)
+docker rmi idImagem (removendo imagens)
+docker rm $(docker ps -a -q) //removendo todos os containers
 ```
 
 ### docker inspect
