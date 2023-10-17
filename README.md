@@ -69,6 +69,15 @@ docker run -it hello-world bash (roda o docker e já abre o terminal interativo.
 docker run -it --name ubuntu1 ubuntu bash
 ```
 
+### --network
+
+- Comando utilizado para subir o container em determinada rede que já exista!
+
+```
+docker run -it -p 8080:4000 --network docker_default --name concurrent joaopoliveira/concurrent:1
+
+```
+
 ### docker ps
 
 - Vai mostrar os containers! em executação ou não
