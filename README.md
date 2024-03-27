@@ -59,6 +59,8 @@ docker run hello-world (nesse exemplo vai rodar a imagem hello-world https://hub
 docker run hello-world sleep 1d(o comando sleep é um comando que diz que o processo só vai ser executado em determinado tempo, 1day. Raramente é utilizado, mas é uma forma de sempre mostrar em execução os containers.)
 
 docker run -it hello-world bash (roda o docker e já abre o terminal interativo.)
+
+docker run -it -v /tmp:/tmp  (basicamente nesse eu estou falando que o volume tmp dentro do container vai ser um espelho do meu, e vice versa!)
 ```
 
 ### --name
