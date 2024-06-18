@@ -77,6 +77,7 @@ docker run -it --name ubuntu1 ubuntu bash
 
 ```
 docker run -it -p 8080:4000 --network docker_default --name concurrent joaopoliveira/concurrent:1
+docker run --hostname rabbitmq --name rabbitmq -d -p 5672:5672 -p 8080:15672 rabbitmq:3.9-management
 
 ```
 
